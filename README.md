@@ -3,6 +3,15 @@
 ## 🚀 Project Overview
 The **Mini Travel Planner** is a web application designed to help users explore destinations and organize their travel experiences in an intuitive and engaging way. The platform allows users to browse cities 🏙️, discover popular tourist attractions 🏛️, and view visual and descriptive information 🖼️ to support travel decision-making.
 
+## Entity Relation Diagram (ERD) 
+[ERD][(https://example.com](https://www.figma.com/make/ePZicfsB8vpPYTG9D2IW6E/Mini-Travel-Planner-Wireframe?node-id=0-4&t=iwAnb0a3neynKUVq-1)
+
+## Wireframe 
+[Wireframe](https://www.figma.com/make/ePZicfsB8vpPYTG9D2IW6E/Mini-Travel-Planner-Wireframe?node-id=0-4&t=iwAnb0a3neynKUVq-1)
+
+## Component Hierarchy Diagram
+[Click me]()
+
 ## ✨ Key Features
 Users can explore a variety of cities and tourist destinations 🌎, view detailed information about attractions, and build personalized trip plans 🧳 based on their interests. The application supports managing multiple trips, making it easy to plan, revisit 🔄, and refine travel ideas over time.
 
