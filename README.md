@@ -1,25 +1,16 @@
-# 🌍 Mini Travel Planner
+# React + Vite
 
-## 🚀 Project Overview
-The **Mini Travel Planner** is a web application designed to help users explore destinations and organize their travel experiences in an intuitive and engaging way. The platform allows users to browse cities 🏙️, discover popular tourist attractions 🏛️, and view visual and descriptive information 🖼️ to support travel decision-making.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## ✨ Key Features
-Users can explore a variety of cities and tourist destinations 🌎, view detailed information about attractions, and build personalized trip plans 🧳 based on their interests. The application supports managing multiple trips, making it easy to plan, revisit 🔄, and refine travel ideas over time.
+Currently, two official plugins are available:
 
-## 🎨 User Experience & Design
-The application focuses on clean design 🖌️, smooth navigation 🧭, and an easy-to-use interface. Interactive elements and structured layouts are used to simulate real-world travel planning tools, ensuring a seamless and enjoyable user experience 😎.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🗺️ Personalization & Trip Planning
-Each user can create customized trip plans by selecting places they want to visit 📍. These plans help users visualize their journey, organize attractions in one place 🗂️, and adapt their plans as their preferences change 🔄.
+## React Compiler
 
-## 🛠️ Backend & Data Management
-The application includes a backend system responsible for user authentication 🔐 and managing application data. It supports full **CRUD functionality** 📝, allowing users to create, view, update, and delete trips and associated travel information while maintaining a personalized and consistent experience.This project showcases practical use of RESTful APIs, database relationships, and modern frontend–backend integration.
+The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
 
-**Backend Models:**  
-- **👤 User:** Handles authentication and stores user-specific information, including created trips and preferences.  
-- **🌆 City:** Stores city-related details such as name, country, and representative images.  
-- **🏛️ Place:** Represents tourist attractions associated with a specific city, including relevant descriptive information.  
-- **🧳 Trip:** Stores user-created travel plans containing selected places and trip-related details.
+## Expanding the ESLint configuration
 
-## 🎯 Project Goals
-The goal of this project is to demonstrate full-stack application development skills 💻, user-centered design principles 🎨, and real-world problem-solving 🛠️ by building a functional and practical travel planning platform 🌍.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
