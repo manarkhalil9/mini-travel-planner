@@ -5,6 +5,8 @@ import { CheckSession } from "./services/auth"
 
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
+import Home from "./pages/Home"
+import Nav from "./components/Nav"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -29,10 +31,12 @@ const App = () => {
 
   return (
     <>
+      <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn setUser={setUser} />} />
         </Routes>
       </main>
     </>
