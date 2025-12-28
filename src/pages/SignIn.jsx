@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { SignInUser } from "../services/auth"
+import { useNavigate } from "react-router-dom"
 
 const SignIn = ({ setUser }) => {
+  let navigate = useNavigate()
   const initialState = {
     email: "",
     password: "",
@@ -18,6 +20,8 @@ const SignIn = ({ setUser }) => {
     const userData = await SignInUser(form)
     setForm(initialState)
     setUser(userData)
+    navigate("/")
+
   }
 
   return (
@@ -29,7 +33,7 @@ const SignIn = ({ setUser }) => {
             <input
               name="email"
               type="email"
-              placeholder="example@example.com"
+              placeholder="Enter Your Email"
               onChange={handleChange}
               value={form.email}
             />
