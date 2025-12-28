@@ -9,16 +9,16 @@ const SignUp = () => {
     confirmPassword: "",
   }
 
-  const [formValues, setFormValues] = useState(initialState)
+  const [form, setForm] = useState(initialState)
 
   const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    setFormValues({ ...form, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await RegisterUser(formValues)
-    setFormValues(initialState)
+    await RegisterUser(form)
+    setForm(initialState)
   }
 
   return (
@@ -32,7 +32,7 @@ const SignUp = () => {
               type="text"
               placeholder="Enter Your Name"
               onChange={handleChange}
-              value={formValues.name}
+              value={form.name}
             />
           </div>
           <div>
@@ -42,7 +42,7 @@ const SignUp = () => {
               type="email"
               placeholder="Enter Your Email"
               onChange={handleChange}
-              value={formValues.email}
+              value={form.email}
             />
           </div>
           <div>
@@ -51,7 +51,7 @@ const SignUp = () => {
               name="password"
               type="password"
               onChange={handleChange}
-              value={formValues.password}
+              value={form.password}
             />
           </div>
           <div>
@@ -60,14 +60,14 @@ const SignUp = () => {
               name="confirmPassword"
               type="password"
               onChange={handleChange}
-              value={formValues.confirmPassword}
+              value={form.confirmPassword}
             />
           </div>
           <button
             disabled={
-              !formValues.email ||
-              !formValues.password ||
-              formValues.password !== formValues.confirmPassword
+              !form.email ||
+              !form.password ||
+              form.password !== form.confirmPassword
             }
           >
             Sign Up

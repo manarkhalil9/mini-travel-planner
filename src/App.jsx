@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom"
 import { CheckSession } from "./services/auth"
 
 import SignUp from "./pages/SignUp"
+import SignIn from "./pages/SignIn"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -26,16 +27,16 @@ const App = () => {
     }
   }, [])
 
-  return <>
-<main>
-<Routes>
-  <Route path="/register" element={<SignUp />} />
-</Routes>
-
-</main>
-
-
-  </>
+  return (
+    <>
+      <main>
+        <Routes>
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+      </main>
+    </>
+  )
 }
 
 export default App
