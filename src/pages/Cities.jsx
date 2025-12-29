@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { GetAttractions } from "../services/attractionServices";
 import { useNavigate } from "react-router-dom";
+import CityCards from "../components/CityCards";
 
 const Cities = () => {
   const [allAttractions, setAllAttractions] = useState([])
@@ -40,15 +41,12 @@ const Cities = () => {
       <h1>Cities</h1>
       <p>cities count: {createCities.length}</p>
       {createCities.map((c) => (
-        <div
-          key={`${c.country}|${c.city}`}
-          onClick={() => navigate(`/cities/${encodeURIComponent(c.city)}`)}
-        >
-          <p>
-            {c.city}, {c.country}
-          </p>
-          {c.image && <img src={c.image} alt={c.city} width="200" />}
-        </div>
+    <CityCards
+    key={`${c.country}|${c.city}`}
+    city={c.city}
+    country={c.country}
+    picture={c.picture}
+  />
       ))}
     </div>
   )
