@@ -38,7 +38,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
+
           <Route path="/cities" element={<Cities/>} />
+          <Route path="/cities/:attraction" element={<AttractionDetails />} />
         </Routes>
       </main>
     </>

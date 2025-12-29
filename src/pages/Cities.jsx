@@ -1,23 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GetAttractions } from "../services/attractionServices";
+import { useNavigate } from "react-router-dom";
 
 const Cities = () => {
   const [allAttractions, setAllAttractions] = useState([])
+  const navigate = useNavigate()
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
       const dbAttractions = await GetAttractions()
       setAllAttractions(dbAttractions)
+
     }
     fetchAllAttractions()
   }, [])
 
+
+  const createCities = useMemo(()=> {
+    const cityMap = new Map()
+
+    allAttractions.forEach((attraction)=> {
+      const key = `${attraction.country}|${attraction.city}`
+
+      if (!cityMap.has(key)) {
+        cityMap.set(key, {
+          city: attraction.city,
+          country: attraction.country,
+          picture: attraction.picture,
+        })
+
+      }
+    })
+    return Array.from(cityMap.values())
+  }, [allAttractions])
+
+
   return (
     <div>
       <h1>Cities</h1>
-      <p>
-          Attractions: {allAttractions.length}
-      </p>
+      <p>cities count: {createCities.length}</p>
+      {createCities.map((c) => (
+        <div
+          key={`${c.country}|${c.city}`}
+          onClick={() => navigate(`/cities/${encodeURIComponent(c.city)}`)}
+        >
+          <p>
+            {c.city}, {c.country}
+          </p>
+          {c.image && <img src={c.image} alt={c.city} width="200" />}
+        </div>
+      ))}
     </div>
   )
 }
