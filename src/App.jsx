@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn"
 import Home from "./pages/Home"
 import Nav from "./components/Nav"
 import Cities from "./pages/Cities"
+import AttractionDetails from "./pages/AttractionDetails"
 
 const App = () => {
   const [user, setUser] = useState(null)
