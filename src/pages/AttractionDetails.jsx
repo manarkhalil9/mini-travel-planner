@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { GetAttractions } from "../services/attractionServices"
+import AttractionCards from "../components/AttractionCards"
 
 
 const AttractionDetails = () => {
@@ -36,9 +37,11 @@ const AttractionDetails = () => {
       </p>
 
       {cityAttractions.map((a) => (
-        <div key={a._id}>
-          <p>{a.name}</p>
-        </div>
+  <AttractionCards
+    key={a._id}
+    attraction={a}
+    // onClick={}
+  />
       ))}
     </div>
   )
