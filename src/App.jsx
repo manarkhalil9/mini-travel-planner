@@ -43,7 +43,7 @@ const App = () => {
 
           <Route path="/cities" element={<Cities />} />
           <Route path="/cities/:attraction" element={<AttractionDetails />} />
-          <Route path="/plan" element={<Trip />} />
+          <Route path="/plan" element={<Trip user={user} />} />
         </Routes>
       </main>
     </>

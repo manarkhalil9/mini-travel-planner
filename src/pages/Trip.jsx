@@ -1,39 +1,64 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { GetAllPlans } from "../services/tripPlanServices"
+import { GetAllPlans, DeletePlan } from "../services/tripPlanServices"
 
-const Trip = () => {
+const Trip = ({ user }) => {
   const navigate = useNavigate()
   const [plans, setPlans] = useState([])
+
+  // GET ALL PLANS
   useEffect(() => {
     const getPlans = async () => {
-      const plans = await GetAllPlans()
-      setPlans(plans)
+      try {
+        const data = await GetAllPlans()
+        setPlans(data)
+      } catch (error) {
+        console.error(error)
+      }
     }
     getPlans()
   }, [])
 
+  // DELETE PLAN
+  const deletePlan = async (planId) => {
+    try {
+      await DeletePlan(planId)
+
+      // remove deleted plan from UI
+      setPlans((prevPlans) => prevPlans.filter((plan) => plan._id !== planId))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
-    <>
-      <div>
-        <h1>Explore People's Plans</h1>
-        {plans.map((plan) => (
-          <div>
-            <h3>Day {plan.day}</h3>
-            <p>
-              <strong>City:</strong> {plan.attraction.city}
-            </p>
-            <p>
-              <strong>Country:</strong> {plan.attraction.country}
-            </p>
-            <p>
-              <strong>Notes:</strong> {plan.notes}
-            </p>
-            <img src={plan.attraction.picture} alt="attraction" />
-          </div>
-        ))}
-      </div>
-    </>
+    <div>
+      <h1>Explore People's Plans</h1>
+
+      {plans.map((plan) => (
+        <div key={plan._id}>
+          <h3>Day {plan.day}</h3>
+
+          <p>
+            <strong>City:</strong> {plan.attraction.city}
+          </p>
+
+          <p>
+            <strong>Country:</strong> {plan.attraction.country}
+          </p>
+
+          <p>
+            <strong>Notes:</strong> {plan.notes}
+          </p>
+
+          <img src={plan.attraction.picture} alt="attraction" width="300" />
+
+          {user && (
+            <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
+          )}
+        </div>
+      ))}
+    </div>
   )
 }
 
