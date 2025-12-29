@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { GetAttractions } from "../services/attractionServices";
 
 const Cities = () => {
-  const [allAttractions, setAllAttractions] = useState()
+  const [allAttractions, setAllAttractions] = useState([])
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
@@ -15,11 +15,9 @@ const Cities = () => {
   return (
     <div>
       <h1>Cities</h1>
-      <li>
-        <p>
+      <p>
           Attractions: {allAttractions.length}
-        </p>
-      </li>
+      </p>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
 import Home from "./pages/Home"
 import Nav from "./components/Nav"
+import Cities from "./pages/Cities"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
+          <Route path="/cities" element={<Cities/>} />
         </Routes>
       </main>
     </>
