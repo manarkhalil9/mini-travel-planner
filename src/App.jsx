@@ -9,7 +9,7 @@ import Home from "./pages/Home"
 import Nav from "./components/Nav"
 import Cities from "./pages/Cities"
 import AttractionDetails from "./pages/AttractionDetails"
-
+import Trip from "./pages/Trip"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -43,7 +43,7 @@ const App = () => {
 
           <Route path="/cities" element={<Cities />} />
           <Route path="/cities/:attraction" element={<AttractionDetails />} />
-          
+          <Route path="/plan" element={<Trip />} />
         </Routes>
       </main>
     </>
