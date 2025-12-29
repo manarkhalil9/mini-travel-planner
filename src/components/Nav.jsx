@@ -16,7 +16,11 @@ const Nav = ({ user, handleLogOut }) => {
     return (
       <div>
         <Link to="/register">Sign Up</Link>
+        <br></br>
         <Link to="/signin">Sign In</Link>
+        <br></br>
+        <Link to="/cities">City</Link>
+        <br></br>
       </div>
     )
   }
