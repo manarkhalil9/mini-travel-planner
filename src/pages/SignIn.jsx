@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { SignInUser } from "../services/auth"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const SignIn = ({ setUser }) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+
   const initialState = {
     email: "",
     password: "",
@@ -17,40 +18,53 @@ const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const userData = await SignInUser(form)
+    const payload = await SignInUser(form)
+    setUser(payload)
     setForm(initialState)
-    setUser(userData)
-    navigate("/")
-
+    navigate("/cities")
   }
 
   return (
-    <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
+    <section className="auth">
+      <div className="card auth-card">
+        <h1 className="page__title">Welcome back</h1>
+        <p className="page__subtitle">Sign in to save plans and manage your trips.</p>
+
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label" htmlFor="email">Email</label>
             <input
+              className="input"
+              id="email"
               name="email"
               type="email"
-              placeholder="Enter Your Email"
-              onChange={handleChange}
               value={form.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
             />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
+
+          <div className="field">
+            <label className="label" htmlFor="password">Password</label>
             <input
+              className="input"
+              id="password"
               name="password"
               type="password"
-              onChange={handleChange}
               value={form.password}
+              onChange={handleChange}
+              placeholder="Your password"
             />
           </div>
-          <button>Sign In</button>
+
+          <button className="btn btn--primary" type="submit">Sign in</button>
+
+          <p className="helper">
+            New here? <Link to="/register"><strong>Create an account</strong></Link>
+          </p>
         </form>
       </div>
-    </>
+    </section>
   )
 }
 

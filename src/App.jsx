@@ -1,4 +1,3 @@
-import "./App.css"
 import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 import { CheckSession } from "./services/auth"
@@ -35,16 +34,18 @@ const App = () => {
   return (
     <>
       <Nav user={user} handleLogOut={handleLogOut} />
-      <main>
+ <main className="main">
+    <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
 
           <Route path="/cities" element={<Cities />} />
-          <Route path="/cities/:attraction" element={<AttractionDetails />} />
+          <Route path="/cities/:city" element={<AttractionDetails />} />
           <Route path="/plan" element={<Trip user={user} />} />
         </Routes>
+      </div>
       </main>
     </>
   )
