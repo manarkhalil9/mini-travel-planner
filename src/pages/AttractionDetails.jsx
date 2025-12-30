@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { GetAttractions } from "../services/attractionServices"
-import AttractionCards from "../components/AttractionCards"
-import AttractionPopup from "../components/AttractionPopup"
 
 
 const AttractionDetails = () => {
@@ -11,8 +9,7 @@ const AttractionDetails = () => {
   const {attraction} = useParams()
   const decodedAttraction = decodeURIComponent(attraction)
 
-  const [allAttractions, setAllAttractions] = useState([])
-  const [selectedAttraction, setSelectedAttraction] = useState(null)
+  const [allAttractions, setAllAttractions] = useState()
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
@@ -38,19 +35,11 @@ const AttractionDetails = () => {
         Attraction Count : {cityAttractions.length}
       </p>
 
-      {cityAttractions.map((a) => (
-  <AttractionCards
-    key={a._id}
-    attraction={a}
-    onClick={setSelectedAttraction}
-  />
+{cityAttractions.map((a) => (
+        <div key={a._id}>
+          <p>{a.name}</p>
+        </div>
       ))}
-
-      <AttractionPopup 
-      attraction={selectedAttraction}
-      onClose={() => setSelectedAttraction(null)}
-      />
-
     </div>
   )
 }
