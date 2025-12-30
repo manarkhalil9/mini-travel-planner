@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { GetAttractions } from "../services/attractionServices";
-import { useNavigate } from "react-router-dom";
 import CityCards from "../components/CityCards";
 
 const Cities = () => {
   const [allAttractions, setAllAttractions] = useState([])
-  const navigate = useNavigate()
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
@@ -37,17 +35,27 @@ const Cities = () => {
 
 
   return (
-    <div>
-      <h1>Cities</h1>
-      <p>cities count: {createCities.length}</p>
-      {createCities.map((c) => (
-    <CityCards
-    key={`${c.country}|${c.city}`}
-    city={c.city}
-    country={c.country}
-    picture={c.picture}
-  />
-      ))}
+    <div className="page">
+      <div className="container">
+        <div className="page__head">
+          <div>
+            <h1 className="page__title">Cities</h1>
+            <p className="page__sub">Pick a city to explore attractions and add them to your trip plan.</p>
+          </div>
+          <div className="pill">{createCities.length} available</div>
+        </div>
+
+        <div className="city-grid">
+          {createCities.map((c) => (
+            <CityCards
+              key={`${c.country}|${c.city}`}
+              city={c.city}
+              country={c.country}
+              picture={c.picture}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

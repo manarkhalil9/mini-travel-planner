@@ -66,16 +66,23 @@ const CommentSection = ({ tripId, user }) => {
   }
 
   return (
-    <div>
-      <h4>Comments</h4>
+    <div className="comments">
+      <div className="comments__head">
+        <div>
+          <h4 className="comments__title">Comments</h4>
+          <p className="comments__sub">Share quick tips for this plan.</p>
+        </div>
+      </div>
 
       {user && (
-        <div>
-          <label>Rating:</label>
-          <select
-            value={newRating}
-            onChange={(e) => setNewRating(Number(e.target.value))}
-          >
+        <div className="comment-form">
+          <div className="comment-form__row">
+            <label className="label">Rating</label>
+            <select
+              className="select"
+              value={newRating}
+              onChange={(e) => setNewRating(Number(e.target.value))}
+            >
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
@@ -83,41 +90,36 @@ const CommentSection = ({ tripId, user }) => {
             <option value={5}>5</option>
           </select>
 
-          <br />
+          </div>
 
           <textarea
+            className="textarea"
             placeholder="Write your comment here"
             value={newFeedback}
             onChange={(e) => setNewFeedback(e.target.value)}
           />
 
-          <br />
-
-          <button onClick={handleAddComment} disabled={!newFeedback.trim()}>
-            Add Comment
-          </button>
+          <div className="comment-form__actions">
+            <button className="btn" onClick={handleAddComment} disabled={!newFeedback.trim()}>
+              Add comment
+            </button>
+          </div>
         </div>
       )}
 
-      {!user && <p>Log in to add a comment</p>}
+      {!user && <p className="muted">Sign in to add a comment.</p>}
 
       {isLoading ? (
-        <p>Loading comments...</p>
+        <p className="muted">Loading comments...</p>
       ) : comments.length === 0 ? (
-        <p>No comments yet.</p>
+        <p className="muted">No comments yet.</p>
       ) : (
-        comments.map((comment) => {
+        <div className="comments__list">
+          {comments.map((comment) => {
 
           const isOwner =
             user &&
             (user.id === comment.user?._id || user._id === comment.user?._id)
-          console.log(
-            "USER ID:",
-            user?.id,
-            user?._id,
-            "COMMENT USER ID:",
-            comment.user?._id
-          )
           return (
             <CommentItem
               key={comment._id}
@@ -127,7 +129,8 @@ const CommentSection = ({ tripId, user }) => {
               onDelete={handleDeleteComment}
             />
           )
-        })
+        })}
+        </div>
       )}
     </div>
   )

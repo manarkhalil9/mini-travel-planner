@@ -62,25 +62,37 @@ const AttractionDetails = ({ user,plans, setPlans }) => {
   }
 
   return (
-    <div>
-      <h1>{decodedAttraction}</h1>
-      <p>Attraction Count : {cityAttractions.length}</p>
+    <div className="page">
+      <div className="container">
+        <div className="page__head">
+          <div>
+            <h1 className="page__title">{decodedAttraction}</h1>
+            <p className="page__sub">Choose an attraction to see details, then add it to your trip plan.</p>
+          </div>
+          <div className="page__actions">
+            <button className="btn btn--ghost" onClick={() => navigate("/cities")}>Back to cities</button>
+            <div className="pill">{cityAttractions.length} attractions</div>
+          </div>
+        </div>
 
-      {cityAttractions.map((a) => (
-        <AttractionCards
-          key={a._id}
-          attraction={a}
-          onClick={setSelectedAttraction}
-        />
-      ))}
+        <div className="attraction-grid">
+          {cityAttractions.map((a) => (
+            <AttractionCards
+              key={a._id}
+              attraction={a}
+              onClick={setSelectedAttraction}
+            />
+          ))}
+        </div>
 
-      {selectedAttraction && (
-        <AttractionPopup
-          attraction={selectedAttraction}
-          onClose={() => setSelectedAttraction(null)}
-          addToTrip={user ? addToTrip : null}
-        />
-      )}
+        {selectedAttraction && (
+          <AttractionPopup
+            attraction={selectedAttraction}
+            onClose={() => setSelectedAttraction(null)}
+            addToTrip={user ? addToTrip : null}
+          />
+        )}
+      </div>
     </div>
   )
 }
