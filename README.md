@@ -10,6 +10,9 @@ This repository contains the **frontend** of the Mini Travel Planner application
   https://github.com/HussainM44/Trip-Planner-Backend
 
 ---
+🌐 Live Deployment
+👉 Visit Attracto Live: https://attracto.surge.sh/
+---
 
 ## 🚀 Functionality
 
