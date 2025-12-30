@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { RegisterUser } from "../services/auth"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -20,73 +20,88 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // Optional validation (safe guard)
-    if (!form.email || !form.password) return
-    if (form.password !== form.confirmPassword) return
-
     await RegisterUser(form)
     setForm(initialState)
     navigate("/signin")
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Enter Your Name"
-            value={form.name}
-            onChange={handleChange}
-          />
-        </div>
+    <section className="auth">
+      <div className="card auth-card">
+        <h1 className="page__title">Create your account</h1>
+        <p className="page__subtitle">Save trips, build plans, and keep everything in one place.</p>
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Enter Your Email"
-            value={form.email}
-            onChange={handleChange}
-          />
-        </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label" htmlFor="name">Name</label>
+            <input
+              className="input"
+              id="name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Your name"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="field">
+            <label className="label" htmlFor="email">Email</label>
+            <input
+              className="input"
+              id="email"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            name="confirmPassword"
-            type="password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="field">
+            <label className="label" htmlFor="password">Password</label>
+            <input
+              className="input"
+              id="password"
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Create a password"
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={
-            !form.email ||
-            !form.password ||
-            form.password !== form.confirmPassword
-          }
-        >
-          Sign Up
-        </button>
-      </form>
-    </div>
+          <div className="field">
+            <label className="label" htmlFor="confirmPassword">Confirm password</label>
+            <input
+              className="input"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              placeholder="Repeat your password"
+            />
+          </div>
+
+          <button
+            className="btn btn--primary"
+            type="submit"
+            disabled={
+              !form.email ||
+              !form.password ||
+              form.password !== form.confirmPassword
+            }
+          >
+            Sign up
+          </button>
+
+          <p className="helper">
+            Already have an account? <Link to="/signin"><strong>Sign in</strong></Link>
+          </p>
+        </form>
+      </div>
+    </section>
   )
 }
 

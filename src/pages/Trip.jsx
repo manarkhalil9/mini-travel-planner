@@ -1,66 +1,65 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { GetAllPlans, DeletePlan } from "../services/tripPlanServices"
 
 const Trip = ({ user }) => {
-  const navigate = useNavigate()
   const [plans, setPlans] = useState([])
 
-  // GET ALL PLANS
   useEffect(() => {
     const getPlans = async () => {
-      try {
-        const data = await GetAllPlans()
-        setPlans(data)
-      } catch (error) {
-        console.error(error)
-      }
+      const data = await GetAllPlans()
+      setPlans(data)
     }
     getPlans()
   }, [])
 
-  // DELETE PLAN
   const deletePlan = async (planId) => {
-    try {
-      await DeletePlan(planId)
-
-      // remove deleted plan from data
-      setPlans((plans) => plans.filter((plan) => plan._id !== planId))
-    } catch (error) {
-      console.error(error)
-    }
+    await DeletePlan(planId)
+    setPlans((prev) => prev.filter((p) => p._id !== planId))
   }
 
   return (
-    <div>
-      <h1>Explore People's Plans</h1>
+    <section className="page">
+      <div className="container">
+      <div className="cities__header">
+        <div>
+          <h1 className="page__title">My Trip</h1>
+          <p className="page__subtitle">
+            Everything you’ve added so far. Delete a plan if you change your mind.
+          </p>
+        </div>
+        <span className="badge">{plans.length} items</span>
+      </div>
 
-      {plans.length === 0 ? (
-        <p>No trip plans added yet.</p>
-      ) : (
-        plans.map((plan) => (
-          <div key={plan._id}>
-            <h3>Day {plan.day}</h3>
-
-            <p>
-              <strong>City:</strong> {plan.attraction.city}
-            </p>
-
-            <p>
-              <strong>Country:</strong> {plan.attraction.country}
-            </p>
-
-            <p>
-              <strong>Notes:</strong> {plan.notes}
-            </p>
-            <img src={plan.attraction.picture} alt="attraction" width="300" />
-            {user && (
-              <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
-            )}
+      <div className="trip__list">
+        {plans.length === 0 ? (
+          <div className="card plan">
+            <div>
+              <h3 className="plan__title">No plans yet</h3>
+              <p className="plan__meta">Go to Cities and add attractions to start building your trip.</p>
+            </div>
           </div>
-        ))
-      )}
-    </div>
+        ) : (
+          plans.map((plan) => (
+            <article key={plan._id} className="card plan">
+              <img className="plan__img" src={plan.attraction.picture} alt={plan.attraction.name} />
+              <div>
+                <h3 className="plan__title">Day {plan.day}: {plan.attraction.name}</h3>
+                <p className="plan__meta">
+                  {plan.attraction.city}, {plan.attraction.country} • {plan.notes || "No notes"}
+                </p>
+              </div>
+
+              {user && (
+                <button className="btn btn--ghost" type="button" onClick={() => deletePlan(plan._id)}>
+                  Delete
+                </button>
+              )}
+            </article>
+          ))
+        )}
+      </div>
+          </div>
+    </section>
   )
 }
 
