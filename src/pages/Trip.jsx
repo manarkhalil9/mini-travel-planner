@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { GetAllPlans, DeletePlan } from "../services/tripPlanServices"
+import CommentSection from "../components/CommentSection"
 
 const Trip = ({ user }) => {
   const [plans, setPlans] = useState([])
@@ -13,53 +14,42 @@ const Trip = ({ user }) => {
   }, [])
 
   const deletePlan = async (planId) => {
-    await DeletePlan(planId)
-    setPlans((prev) => prev.filter((p) => p._id !== planId))
+    try {
+      await DeletePlan(planId)
+      setPlans((prevPlans) => prevPlans.filter((plan) => plan._id !== planId))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  return (
-    <section className="page">
-      <div className="container">
-      <div className="cities__header">
-        <div>
-          <h1 className="page__title">My Trip</h1>
-          <p className="page__subtitle">
-            Everything you’ve added so far. Delete a plan if you change your mind.
+
+ return (
+    <div>
+      <h1>Explore People's Plans</h1>
+
+      {plans.map((plan) => (
+        <div key={plan._id}>
+          <h3>Day {plan.day}</h3>
+          <p>
+            <strong>City:</strong> {plan.attraction.city}
           </p>
+          <p>
+            <strong>Country:</strong> {plan.attraction.country}
+          </p>
+          <p>
+            <strong>Notes:</strong> {plan.notes}
+          </p>
+          <img src={plan.attraction.picture} alt="attraction" width="300" />
+
+          {user && (
+            <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
+          )}
+
+          {/* for comment section under the trips, only the logged in user can post comments and logged out user can only view them */}
+          <CommentSection tripId={plan._id} user={user} />
         </div>
-        <span className="badge">{plans.length} items</span>
-      </div>
-
-      <div className="trip__list">
-        {plans.length === 0 ? (
-          <div className="card plan">
-            <div>
-              <h3 className="plan__title">No plans yet</h3>
-              <p className="plan__meta">Go to Cities and add attractions to start building your trip.</p>
-            </div>
-          </div>
-        ) : (
-          plans.map((plan) => (
-            <article key={plan._id} className="card plan">
-              <img className="plan__img" src={plan.attraction.picture} alt={plan.attraction.name} />
-              <div>
-                <h3 className="plan__title">Day {plan.day}: {plan.attraction.name}</h3>
-                <p className="plan__meta">
-                  {plan.attraction.city}, {plan.attraction.country} • {plan.notes || "No notes"}
-                </p>
-              </div>
-
-              {user && (
-                <button className="btn btn--ghost" type="button" onClick={() => deletePlan(plan._id)}>
-                  Delete
-                </button>
-              )}
-            </article>
-          ))
-        )}
-      </div>
-          </div>
-    </section>
+      ))}
+    </div>
   )
 }
 
