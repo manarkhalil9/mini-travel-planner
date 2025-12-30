@@ -3,6 +3,7 @@ const AttractionPopup = ({ attraction, onClose, addToTrip }) => {
 
   return (
     <div className="popup" onClick={onClose}>
+      {/* used chatgpt for this part as we were having some at last moments */}
       <div className="popup__card" onClick={(e) => e.stopPropagation()}>
         <div className="popup__head">
           <h2 className="popup__title">{attraction.name}</h2>
