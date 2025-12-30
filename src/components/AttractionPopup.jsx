@@ -1,22 +1,24 @@
-const AttractionPopup = ({attraction, onClose}) => {
+const AttractionPopup = ({ attraction, onClose, addToTrip }) => {
     if (!attraction) return null
+  return (
+    <div className="popup">
+      <div className="popup-content">
+        <button onClick={onClose}>Close</button>
+        
+        <h2>{attraction.name}</h2>
+        <p>{attraction.description}</p>
+        <p>City: {attraction.city}</p>
+        <p>Country: {attraction.country}</p>
+        <img src={attraction.picture} alt={attraction.name} />
 
-    const handleAddToTrip = () => {
-        console.log('added to trip:', attraction)
-    }
-
-    return (
-        <div>
-            <button onClick={onClose}>Close</button>
-
-            <h2>{attraction.name}</h2>
-            <p>{attraction.description}</p>
-            <img src={attraction.picture} alt={attraction.name} />
-            <p>Country: {attraction.country}</p>
-
-            <button onClick={handleAddToTrip}>Add to Trip</button>
-        </div>
-    )
+        {addToTrip && (
+          <button onClick={() => addToTrip(attraction)}>
+            Add to Trip
+          </button>
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default AttractionPopup
