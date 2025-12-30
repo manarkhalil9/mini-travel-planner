@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { GetAttractions } from "../services/attractionServices"
 import AttractionCards from "../components/AttractionCards"
+import AttractionPopup from "../components/AttractionPopup"
 
 
 const AttractionDetails = () => {
@@ -11,6 +12,7 @@ const AttractionDetails = () => {
   const decodedAttraction = decodeURIComponent(attraction)
 
   const [allAttractions, setAllAttractions] = useState([])
+  const [selectedAttraction, setSelectedAttraction] = useState(null)
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
@@ -40,9 +42,15 @@ const AttractionDetails = () => {
   <AttractionCards
     key={a._id}
     attraction={a}
-    // onClick={}
+    onClick={setSelectedAttraction}
   />
       ))}
+
+      <AttractionPopup 
+      attraction={selectedAttraction}
+      onClose={() => setSelectedAttraction(null)}
+      />
+
     </div>
   )
 }
