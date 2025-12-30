@@ -52,7 +52,7 @@ const Trip = ({ user }) => {
           </p>
 
           <img src={plan.attraction.picture} alt="attraction" width="300" />
-
+//chatgpt
           {user && (
             <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
           )}
