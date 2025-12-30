@@ -1,8 +1,8 @@
-const AttractionCards = ({ onClick, attraction, picture }) => {
+const AttractionCards = ({ onClick, attraction }) => {
   return (
-    <div onClick={onClick}>
+    <div className="attraction-card" onClick={() => onClick(attraction)}>
       <p>{attraction.name}</p>
-      <img src={attraction.picture} alt="attraction" width={500} />
+      <img src={attraction.picture} alt={attraction.name} />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { GetAttractions } from "../services/attractionServices"
 import AttractionCards from "../components/AttractionCards"
+import AttractionPopup from "../components/AttractionPopup"
 
 
 const AttractionDetails = () => {
@@ -11,6 +12,8 @@ const AttractionDetails = () => {
   const decodedAttraction = decodeURIComponent(attraction)
 
   const [allAttractions, setAllAttractions] = useState([])
+  const [plans, setPlans] = useState([])
+  const [selectedAttraction, setSelectedAttraction] = useState(null)
 
   useEffect(()=> {
     const fetchAllAttractions = async () => {
@@ -26,6 +29,17 @@ const AttractionDetails = () => {
     return allAttractions.filter((a) => a.city === decodedAttraction)
   }, [allAttractions, decodedAttraction])
 
+  const addToTrip = (attraction) => {
+    if (!plans) return
+    const newPlan = {
+      _id: Date.now(),
+      day: plans.length + 1,
+      notes: '',
+      attraction: attraction,
+    }
+    setPlans(prev => [...prev, newPlan])
+    alert(`${attraction.name} added to your trip!`)
+  }
 
   return (
     <div>
@@ -36,13 +50,22 @@ const AttractionDetails = () => {
         Attraction Count : {cityAttractions.length}
       </p>
 
-      {cityAttractions.map((a) => (
+    {cityAttractions.map((a) => (
   <AttractionCards
     key={a._id}
     attraction={a}
-    // onClick={}
+    onClick={setSelectedAttraction}
   />
       ))}
+
+      {selectedAttraction && (
+        <AttractionPopup
+          attraction={selectedAttraction}
+          onClose={() => setSelectedAttraction(null)}
+          addToTrip={addToTrip}
+        />
+      )}
+
     </div>
   )
 }
