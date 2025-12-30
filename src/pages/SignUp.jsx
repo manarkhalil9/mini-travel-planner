@@ -31,61 +31,75 @@ const SignUp = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Enter Your Name"
-            value={form.name}
-            onChange={handleChange}
-          />
-        </div>
+    <div className="auth">
+      <div className="container">
+        <div className="auth__card">
+          <h1 className="auth__title">Create account</h1>
+          <p className="auth__sub">Save trips, add plans, and leave comments.</p>
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Enter Your Email"
-            value={form.email}
-            onChange={handleChange}
-          />
-        </div>
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="field">
+              <label className="label" htmlFor="name">Name</label>
+              <input
+                className="input"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                value={form.name}
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-          />
-        </div>
+            <div className="field">
+              <label className="label" htmlFor="email">Email</label>
+              <input
+                className="input"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            name="confirmPassword"
-            type="password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
+            <div className="field">
+              <label className="label" htmlFor="password">Password</label>
+              <input
+                className="input"
+                name="password"
+                type="password"
+                placeholder="Create a password"
+                value={form.password}
+                onChange={handleChange}
+              />
+            </div>
 
-        <button
-          type="submit"
-          disabled={
-            !form.email ||
-            !form.password ||
-            form.password !== form.confirmPassword
-          }
-        >
-          Sign Up
-        </button>
-      </form>
+            <div className="field">
+              <label className="label" htmlFor="confirmPassword">Confirm password</label>
+              <input
+                className="input"
+                name="confirmPassword"
+                type="password"
+                placeholder="Repeat your password"
+                value={form.confirmPassword}
+                onChange={handleChange}
+              />
+            </div>
+
+            <button
+              className="btn"
+              type="submit"
+              disabled={
+                !form.email ||
+                !form.password ||
+                form.password !== form.confirmPassword
+              }
+            >
+              Create account
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

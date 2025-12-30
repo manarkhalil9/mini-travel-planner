@@ -1,4 +1,3 @@
-import "./App.css"
 import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 import { CheckSession } from "./services/auth"
@@ -34,9 +33,9 @@ const App = () => {
   }, [])
 
   return (
-    <>
+    <div className="app">
       <Nav user={user} handleLogOut={handleLogOut} />
-      <main>
+      <main className="main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
@@ -53,7 +52,7 @@ const App = () => {
           />
         </Routes>
       </main>
-    </>
+    </div>
   )
 }
 

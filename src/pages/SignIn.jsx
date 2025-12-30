@@ -25,32 +25,42 @@ const SignIn = ({ setUser }) => {
   }
 
   return (
-    <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              name="email"
-              type="email"
-              placeholder="Enter Your Email"
-              onChange={handleChange}
-              value={form.email}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
-              name="password"
-              type="password"
-              onChange={handleChange}
-              value={form.password}
-            />
-          </div>
-          <button>Sign In</button>
-        </form>
+    <div className="auth">
+      <div className="container">
+        <div className="auth__card">
+          <h1 className="auth__title">Sign in</h1>
+          <p className="auth__sub">Continue planning your next trip.</p>
+
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="field">
+              <label className="label" htmlFor="email">Email</label>
+              <input
+                className="input"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                onChange={handleChange}
+                value={form.email}
+              />
+            </div>
+
+            <div className="field">
+              <label className="label" htmlFor="password">Password</label>
+              <input
+                className="input"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                onChange={handleChange}
+                value={form.password}
+              />
+            </div>
+
+            <button className="btn" type="submit">Sign in</button>
+          </form>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

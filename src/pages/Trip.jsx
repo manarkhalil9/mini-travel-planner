@@ -29,31 +29,45 @@ const Trip = ({ user , plans , setPlans }) => {
 
 
   return (
-    <div>
-      <h1>Explore People's Plans</h1>
-
-      {plans.map((plan) => (
-        <div key={plan._id}>
-          <h3>Day {plan.day}</h3>
-          <p>
-            <strong>City:</strong> {plan.attraction.city}
-          </p>
-          <p>
-            <strong>Country:</strong> {plan.attraction.country}
-          </p>
-          <p>
-            <strong>Notes:</strong> {plan.notes}
-          </p>
-          <img src={plan.attraction.picture} alt="attraction" width="300" />
-
-          {user && (
-            <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
-          )}
-
-          {/* for comment section under the trips, only the logged in user can post comments and logged out user can only view them */}
-          <CommentSection tripId={plan._id} user={user} />
+    <div className="page">
+      <div className="container">
+        <div className="page__head">
+          <div>
+            <h1 className="page__title">Trips</h1>
+            <p className="page__sub">Browse trip plans and leave comments. Add more items from Cities.</p>
+          </div>
+          <div className="page__actions">
+            <button className="btn btn--ghost" onClick={() => navigate("/cities")}>Add attractions</button>
+            <div className="pill">{plans.length} plans</div>
+          </div>
         </div>
-      ))}
+
+        <div className="plan__grid">
+          {plans.map((plan) => (
+            <div className="plan" key={plan._id}>
+              <div className="plan__media">
+                <img className="plan__img" src={plan.attraction.picture} alt={plan.attraction.name || "Attraction"} />
+              </div>
+              <div className="plan__body">
+                <div className="plan__top">
+                  <div className="plan__title">
+                    Day {plan.day} • {plan.attraction.city}, {plan.attraction.country}
+                  </div>
+                  {user && (
+                    <button className="btn btn--danger" onClick={() => deletePlan(plan._id)}>
+                      Delete
+                    </button>
+                  )}
+                </div>
+
+                <p className="plan__notes">{plan.notes}</p>
+
+                <CommentSection tripId={plan._id} user={user} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
