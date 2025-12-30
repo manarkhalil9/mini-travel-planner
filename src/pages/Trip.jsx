@@ -25,8 +25,8 @@ const Trip = ({ user }) => {
     try {
       await DeletePlan(planId)
 
-      // remove deleted plan from UI
-      setPlans((prevPlans) => prevPlans.filter((plan) => plan._id !== planId))
+      // remove deleted plan from data
+      setPlans((plans) => plans.filter((plan) => plan._id !== planId))
     } catch (error) {
       console.error(error)
     }
@@ -36,17 +36,20 @@ const Trip = ({ user }) => {
     <div>
       <h1>Explore People's Plans</h1>
 
-      {plans.map((plan) => (
-        <div key={plan._id}>
-          <h3>Day {plan.day}</h3>
+      {plans.length === 0 ? (
+        <p>No trip plans added yet.</p>
+      ) : (
+        plans.map((plan) => (
+          <div key={plan._id}>
+            <h3>Day {plan.day}</h3>
 
-          <p>
-            <strong>City:</strong> {plan.attraction.city}
-          </p>
+            <p>
+              <strong>City:</strong> {plan.attraction.city}
+            </p>
 
-          <p>
-            <strong>Country:</strong> {plan.attraction.country}
-          </p>
+            <p>
+              <strong>Country:</strong> {plan.attraction.country}
+            </p>
 
           <p>
             <strong>Notes:</strong> {plan.notes}
