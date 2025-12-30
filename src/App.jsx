@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/cities" element={<Cities />} />
           <Route
             path="/cities/:attraction"
-            element={<AttractionDetails plans={plans} setPlans={setPlans} />}
+            element={<AttractionDetails user={user} plans={plans} setPlans={setPlans} />}
           />
           <Route
             path="/plan"

@@ -8,7 +8,7 @@ import AttractionCards from "../components/AttractionCards"
 import AttractionPopup from "../components/AttractionPopup"
 import { CreatePlan } from "../services/tripPlanServices"
 
-const AttractionDetails = ({ plans, setPlans }) => {
+const AttractionDetails = ({ user,plans, setPlans }) => {
   const navigate = useNavigate()
 
   const { attraction } = useParams()
@@ -78,7 +78,7 @@ const AttractionDetails = ({ plans, setPlans }) => {
         <AttractionPopup
           attraction={selectedAttraction}
           onClose={() => setSelectedAttraction(null)}
-          addToTrip={addToTrip}
+          addToTrip={user ? addToTrip : null}
         />
       )}
     </div>
