@@ -12,7 +12,6 @@ This repository contains the **frontend** of the Mini Travel Planner application
 ---
 🌐 Live Deployment
 👉 Visit Attracto Live: https://attracto.surge.sh/
----
 
 ## 🚀 Functionality
 
