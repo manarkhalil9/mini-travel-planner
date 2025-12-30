@@ -32,10 +32,21 @@ const AttractionDetails = ({ plans, setPlans }) => {
 
   const addToTrip = async (attraction) => {
     try {
+      const sampleNotes = [
+        "Must visit!",
+        "Take lots of pictures.",
+        "Check opening hours.",
+        "Try local food nearby.",
+        "Bring comfortable shoes.",
+        "Perfect for sunset views.",
+        "Could skip if short on time.",
+      ]
+      const random = sampleNotes[Math.floor(Math.random() * sampleNotes.length)]
+
       const planData = {
         attraction: attraction._id, // send ID here
         day: plans.length + 1,
-        notes: "",
+        notes: random,
       }
 
       const addedPlan = await CreatePlan(planData)
