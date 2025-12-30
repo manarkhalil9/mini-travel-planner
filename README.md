@@ -67,3 +67,14 @@ The main purpose of the Mini Travel Planner frontend is to provide a visually cl
 - Build and manage personalized trip plans  
 
 This frontend acts as the bridge between users and the backend system, transforming raw travel data into a meaningful and user-friendly trip planning experience.
+
+---
+
+## 🚀 Future Enhancements
+
+- Add search functionality to quickly find cities and attractions.
+- Display real-time weather information for selected destinations.
+- Integrate interactive maps to show attraction locations.
+- Enable drag-and-drop planning for daily itineraries.
+- Improve mobile responsiveness and overall UI design.
+- Add loading indicators and smooth animations for better user feedback.
