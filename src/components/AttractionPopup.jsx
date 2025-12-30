@@ -1,10 +1,11 @@
 const AttractionPopup = ({ attraction, onClose, addToTrip }) => {
-    if (!attraction) return null
+
+  
   return (
     <div className="popup">
       <div className="popup-content">
         <button onClick={onClose}>Close</button>
-        
+
         <h2>{attraction.name}</h2>
         <p>{attraction.description}</p>
         <p>City: {attraction.city}</p>

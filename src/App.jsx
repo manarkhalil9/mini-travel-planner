@@ -13,6 +13,7 @@ import Trip from "./pages/Trip"
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [plans, setPlans] = useState([])
 
   const checkToken = async () => {
     const userData = await CheckSession()
@@ -42,8 +43,14 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
 
           <Route path="/cities" element={<Cities />} />
-          <Route path="/cities/:attraction" element={<AttractionDetails />} />
-          <Route path="/plan" element={<Trip user={user} />} />
+          <Route
+            path="/cities/:attraction"
+            element={<AttractionDetails plans={plans} setPlans={setPlans} />}
+          />
+          <Route
+            path="/plan"
+            element={<Trip user={user} plans={plans} setPlans={setPlans} />}
+          />
         </Routes>
       </main>
     </>

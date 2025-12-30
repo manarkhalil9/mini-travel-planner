@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { GetAllPlans, DeletePlan } from "../services/tripPlanServices"
 import CommentSection from "../components/CommentSection"
 
-const Trip = ({ user }) => {
+const Trip = ({ user , plans , setPlans }) => {
   const navigate = useNavigate()
-  const [plans, setPlans] = useState([])
 
   useEffect(() => {
     const getPlans = async () => {
