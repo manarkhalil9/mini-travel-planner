@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { GetAllPlans, DeletePlan } from "../services/tripPlanServices"
+import CommentSection from "../components/CommentSection"
 
 const Trip = ({ user }) => {
   const navigate = useNavigate()
@@ -56,6 +57,8 @@ const Trip = ({ user }) => {
           {user && (
             <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
           )}
+          {/* for comment section under the trips, only the logged in user can post comments and logged out user can only view them */}
+          <CommentSection tripId={plan._id} user={user} />
         </div>
       ))}
     </div>
@@ -63,3 +66,4 @@ const Trip = ({ user }) => {
 }
 
 export default Trip
+      
