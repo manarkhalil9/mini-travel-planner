@@ -52,7 +52,8 @@ const CommentItem = ({ comment, isOwner, onEdit, onDelete }) => {
 
           {isOwner && (
             <>
-              
+              <button onClick={() => setIsEditing(true)}>Edit</button>
+              <button onClick={() => onDelete(comment._id)}>Delete</button>
             </>
           )}
         </>
