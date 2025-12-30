@@ -7,7 +7,6 @@ const Trip = ({ user }) => {
   const navigate = useNavigate()
   const [plans, setPlans] = useState([])
 
-  // GET ALL PLANS
   useEffect(() => {
     const getPlans = async () => {
       try {
@@ -20,46 +19,38 @@ const Trip = ({ user }) => {
     getPlans()
   }, [])
 
-  // DELETE PLAN
   const deletePlan = async (planId) => {
     try {
       await DeletePlan(planId)
-
-      // remove deleted plan from data
-      setPlans((plans) => plans.filter((plan) => plan._id !== planId))
+      setPlans((prevPlans) => prevPlans.filter((plan) => plan._id !== planId))
     } catch (error) {
       console.error(error)
     }
   }
 
+
   return (
     <div>
       <h1>Explore People's Plans</h1>
 
-      {plans.length === 0 ? (
-        <p>No trip plans added yet.</p>
-      ) : (
-        plans.map((plan) => (
-          <div key={plan._id}>
-            <h3>Day {plan.day}</h3>
-
-            <p>
-              <strong>City:</strong> {plan.attraction.city}
-            </p>
-
-            <p>
-              <strong>Country:</strong> {plan.attraction.country}
-            </p>
-
+      {plans.map((plan) => (
+        <div key={plan._id}>
+          <h3>Day {plan.day}</h3>
+          <p>
+            <strong>City:</strong> {plan.attraction.city}
+          </p>
+          <p>
+            <strong>Country:</strong> {plan.attraction.country}
+          </p>
           <p>
             <strong>Notes:</strong> {plan.notes}
           </p>
-
           <img src={plan.attraction.picture} alt="attraction" width="300" />
 
           {user && (
             <button onClick={() => deletePlan(plan._id)}>Delete Plan</button>
           )}
+
           {/* for comment section under the trips, only the logged in user can post comments and logged out user can only view them */}
           <CommentSection tripId={plan._id} user={user} />
         </div>
@@ -69,4 +60,3 @@ const Trip = ({ user }) => {
 }
 
 export default Trip
-      
