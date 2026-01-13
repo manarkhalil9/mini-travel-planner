@@ -53,11 +53,16 @@ const Trip = ({ user , plans , setPlans }) => {
                   <div className="plan__title">
                     Day {plan.day} • {plan.attraction.city}, {plan.attraction.country}
                   </div>
-                  {user && (
-                    <button className="btn btn--danger" onClick={() => deletePlan(plan._id)}>
-                      Delete
-                    </button>
-                  )}
+                  {user && plan.user === user.id && (
+  <button
+    className="plan-delete-btn"
+    onClick={() => deletePlan(plan._id)}
+  >
+    Delete
+  </button>
+)}
+
+
                 </div>
 
                 <p className="plan__notes">{plan.notes}</p>

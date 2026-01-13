@@ -760,3 +760,24 @@ img {
   color: var(--muted);
   font-weight: 700;
 }
+
+
+.plan-delete-btn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.plan-delete-btn:hover {
+  background-color: #c53030;
+  transform: scale(1.05);
+}
+
+.plan-delete-btn:active {
+  transform: scale(0.95);
+}
